@@ -1,5 +1,7 @@
 import pkg from "./package.json";
 
+const repoURL = "https://github.com/Linho1219/outlook-calendar-scroll";
+
 const metadataObject: Metadata = {
   name: "Outlook Calendar Scroll",
   namespace: "https://github.com/Linho1219",
@@ -18,12 +20,10 @@ const metadataObject: Metadata = {
   "name:zh-CN": "Outlook 日历滚动增强脚本",
   "description:zh-CN": "通过滚动切换 Outlook PWA 中的日历月份",
 
-  homepage: "https://github.com/Linho1219/OutlookCalendarScroll",
-  supportURL: "https://github.com/Linho1219/OutlookCalendarScroll/issues",
-  updateURL:
-    "https://github.com/Linho1219/OutlookCalendarScroll/releases/latest/download/outlook-calendar-scroll.user.js",
-  downloadURL:
-    "https://github.com/Linho1219/OutlookCalendarScroll/releases/latest/download/outlook-calendar-scroll.user.js",
+  homepage: repoURL,
+  supportURL: `${repoURL}/issues`,
+  updateURL: `${repoURL}/releases/latest/download/outlook-calendar-scroll.user.js`,
+  downloadURL: `${repoURL}/releases/latest/download/outlook-calendar-scroll.user.js`,
   icon: "https://outlook.live.com/favicon.ico",
 
   license: "MIT",
