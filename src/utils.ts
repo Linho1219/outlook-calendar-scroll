@@ -26,8 +26,8 @@ function getCalendarDOMs() {
   const surface = document.querySelector(
     '[data-app-section="CalendarModuleSurface"]',
   ) as HTMLElement | null;
-  const [_, prevBtn, nextBtn] = document.querySelectorAll(
-    '[role="toolbar"] button',
+  const [prevBtn, nextBtn] = document.querySelectorAll(
+    '[data-app-section="CalendarSurfaceNavigationToolbar"] .fui-ToolbarGroup .fui-ToolbarGroup button',
   ) as NodeListOf<HTMLButtonElement>;
 
   if (!surface || !prevBtn || !nextBtn)
@@ -40,14 +40,16 @@ function getCalendarDOMs() {
 
 export type IconSet = Record<Views, string>;
 function getIconSet(): IconSet {
-  const ribbonIconEls = document.querySelectorAll(
-    "#innerRibbonContainer .ms-RibbonButton-icon .fui-Icon-font",
-  ) as NodeListOf<HTMLElement>;
-  if (ribbonIconEls.length === 0) throw new Error("Ribbon icons not found");
-  const day = ribbonIconEls[1].innerText.trim();
-  const workweek = ribbonIconEls[2].innerText.trim();
-  const week = ribbonIconEls[3].innerText.trim();
-  const month = ribbonIconEls[4].innerText.trim();
+  const getIconEl = (iconName: string) =>
+    document.querySelector(
+      `#innerRibbonContainer [data-icon-name="${iconName}"]`,
+    ) as HTMLElement | null;
+  const getIconCode = (iconName: string) =>
+    getIconEl(iconName)?.innerText.trim();
+  const day = getIconCode("CalendarDayRegular");
+  const workweek = getIconCode("CalendarWorkWeekRegular");
+  const week = getIconCode("Calendar3DayRegular");
+  const month = getIconCode("CalendarLtrRegular");
   if (!day || !workweek || !week || !month)
     throw new Error("Failed to extract calendar view icons");
   return { day, workweek, week, month };
